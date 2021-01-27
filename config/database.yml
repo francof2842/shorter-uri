@@ -1,0 +1,17 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  username: postgres
+  host: <%= ENV['DB_HOST'] %>
+  pool: <%= ENV['RAILS_MAX_THREADS'] %>
+
+development:
+  <<: *default
+  database: <%= ENV['DB_NAME'] %>
+
+test:
+  <<: *default
+  database: <%= ENV['DB_NAME'] %>_verify_test
+
+production:
+  url: <%= ENV['DB_URL'] %>
