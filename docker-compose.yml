@@ -1,14 +1,14 @@
 version: '3.3'
 services:
-  api:
-    container_name: api
+  shortner_api:
+    container_name: shortner_api
     image: shortner_api
     build: .
     tty: true
     stdin_open: true
     env_file: .env
     environment:
-      DB_HOST: db
+      DB_HOST: db_shortner
       DB_USER: postgres
       DB_PORT: 5432
     volumes:
@@ -17,12 +17,12 @@ services:
     ports:
       - "3000:3000"
     external_links:
-      - db
+      - db_shortner
     depends_on:
-      - db
+      - db_shortner
 
-  db:
-    container_name: db
+  db_shortner:
+    container_name: db_shortner
     image: postgres:12.5
     env_file:
       .env
